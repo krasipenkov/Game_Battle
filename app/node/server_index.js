@@ -1,11 +1,11 @@
 'use strict';
 
 var server = require('http').createServer();
-var io = require('socket.io')(server);
-var users = require('./src/server_users');
-var main = require('./src/server_main')(io);
-var lobby = require('./src/server_lobby')(io);
-var game = require('./src/server_game')(io);
+global.io = require('socket.io')(server);
+global.users = require('./src/server_users');
+global.main = require('./src/server_main')();
+global.lobby = require('./src/server_lobby')();
+global.game = require('./src/server_game')();
 
 var port = 3001;
 
@@ -51,15 +51,15 @@ io.on('connection', function(socket)
 		});
 
 		/* Handle lobby users */		
-		socket.on('lobby_users', function(data) {
+		socket.on('lobby_users', function() {
 			lobby.getUsers(socket);
 		});
 
 		/* GAME FUNCTIONS */
 
 		/* Handle game open */
-		socket.on('game_open', function() {
-			game.open(socket);
+		socket.on('game_open', function(data) {
+			game.open(socket, data);
 		});
 
 		/* Handle game open */

@@ -1,27 +1,31 @@
 'use strict';
 
-module.exports = function(io)
+module.exports = function()
 {
-	var lobby = require('./server_lobby')(io);
-
 	var Game = {};
 
-	var games = {};
+	Game.games = {};
 
-	Game.open = function(socket) {
-		console.log('GAME open: [' + socket.id + ']');
+	Game.open = function(socket, data) {
+		console.log('GAME open: [' + socket.id + '] ' + data);
 
 		Game.games[socket.user_id] = { 
 			id: socket.user_id,
 			host: socket.user_name
 		};
 
-		
+		Game.list(socket);
 	};
 
 	Game.list = function(socket) {
-		console.log('GAME list: [' + socket.id + ']');
-		io.sockets.in(Lobby.room).emit('game_list', Game.games);
+		console.log('GAME list: [' + socket.id + '] ' + JSON.stringify(Game.games));
+		io.sockets.in(lobby.room).emit('game_list', JSON.stringify(Game.games));
+	};
+
+	Game.delete = function(socket) {
+		console.log('GAME delete: [' + socket.id + ']');
+		delete Game.games[socket.user_id];
+		io.sockets.in(lobby.room).emit('game_list', JSON.stringify(Game.games));
 	};
 
 	return Game;

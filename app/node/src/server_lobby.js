@@ -3,7 +3,7 @@
 var rest = require('./server_rest');
 var users = require('./server_users');
 
-module.exports = function(io)
+module.exports = function()
 {
 	var Lobby = {
 		room: 'Lobby'
@@ -25,6 +25,7 @@ module.exports = function(io)
 			
 			console.log("USER LOGGED: "+user.id+ " / "+user.name);
 			Lobby.userList();
+			game.list(socket);
 		}
 	};
 
