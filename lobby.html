@@ -8,8 +8,10 @@
 
     <link rel="stylesheet" type="text/css" href="resources/css/lobby.css"/>
  
-    <script type="text/javascript" src="resources/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="resources/js/lobby.js"></script>    
+    <script src="/resources/js/jquery-1.11.3.min.js"></script>
+	<script src="/resources/js/functions.js"></script>
+	<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+	<script src="/resources/js/lobby.js"></script> 
 
 </head>
 <body>
@@ -59,7 +61,7 @@
             
         </div>
         <div class="chatHolder">
-            <div class="headingGradient">CHAT (87 online)</div>
+            <div class="headingGradient" id="userCount"></div>
             
             <div class="chatConversationHolder">
                 <div class="chatRow">

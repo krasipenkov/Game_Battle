@@ -9,13 +9,16 @@ var Users = {};
 /*
  * 
  */
-Users.userlist = [];
+Users.userlist = {};
 
 /*
  * 
  */
 Users.add = function (socket, user) {
-	Users.userlist[user.id] = { user: user, socket_id: socket.id };
+	if(socket.id && user.id)
+	{
+		Users.userlist[user.id] = { user: user, socket_id: socket.id };
+	}
 }
 
 /*
@@ -36,14 +39,14 @@ Users.get = function (name) {
  * 
  */
 Users.count = function () {
-	return Users.userlist.length;
+	return Object.keys(Users.userlist).length;
 }
 
 /*
  * 
  */
 Users.list = function () {
-	return Object.keys(Users.userlist);
+	return (Users.userlist);
 }
 
 /* */

@@ -3,6 +3,7 @@
 var socket = io('localhost:3001');
 var token = gup('token');
 var user = {};
+var image = 'https://graph.facebook.com/1791186603/picture?width=50&height=50&access_token=CAACEdEose0cBABOcPP1Q1BlSq6Lq3WHc6GWrhqQglHinKhauIJZBH1fiaZBPJWN1TkHnEFf2FKhVPyuoYheR1ZCJgZAKffZB88Qcj5mkgIPj61hB5vTP3pZApOj7gqJ1ZBi7u26HOogGE1HEnLOpQGEtQPZAvbQbNtiDyqGL1QLNyIXWMjlF4QVd0oqFY6bKRUN2e1Jdy1wiPinRVWO9oLYK';
 
 $(function() 
 {
@@ -41,6 +42,7 @@ $(function()
 	socket.on('newUser', function(user)
 	{
 		log('new user');
+		getUsers();
 	});
 	
 	/* new message to chat */
@@ -54,7 +56,7 @@ $(function()
 	socket.on('userList', function(data)
 	{
 		log('getting user list');
-		console.log(data);
+		$("#userCount").html('Chat: '+data.userCount+' online');
 	});
 });
 

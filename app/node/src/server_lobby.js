@@ -13,13 +13,14 @@ module.exports = function(io)
 	{
 		console.log('LOBBY loggged: [' + socket.id + '] / user token: ' + token);
 		var user = rest.get('user', token);
-		if(user.id && user.name)
+		if(token && user.id && user.name)
 		{	
 			io.sockets.in(Lobby.room).emit('newUser', user); // send new user to the room
 			
 			socket.join(Lobby.room); // join to room
 			socket.emit('joined', user);
 			users.add(socket, user);
+			socket.user_id = user.id;
 			
 			console.log("USER LOGGED: "+user.id+ " / "+user.name);
 		}
@@ -37,6 +38,11 @@ module.exports = function(io)
 		console.log("LOBBY get users");
 		var data = { userCount: users.count(), userList: users.list() };
 		socket.emit('userList', data);
+	}
+	
+	Lobby.removeUser = function(socket)
+	{
+		users.del(socket.user_id);
 	}
 
 	return Lobby;
