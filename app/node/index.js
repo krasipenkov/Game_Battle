@@ -25,6 +25,11 @@ io.on('connection', function(socket) {
 		main.connect(socket);
 
 		/* Handle disconnected sockets */		
+		socket.on('lobby_join', function() {
+			lobby.join(socket);
+		});
+
+		/* Handle disconnected sockets */		
 		socket.on('disconnect', function() {
 			main.disconnect(socket);
 		});
