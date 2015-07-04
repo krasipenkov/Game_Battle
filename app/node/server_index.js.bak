@@ -27,11 +27,11 @@ io.on('connection', function(socket)
 		/* SOCKET FUNCTIONS */
 
 		/* Handle connected sockets */
-		main.socket_connect(socket);
+		main.connect(socket);
 
 		/* Handle disconnected sockets */		
 		socket.on('disconnect', function() {
-			main.socket_disconnect(socket);
+			main.disconnect(socket);
 		});
 
 		/* Handle socket errors */
