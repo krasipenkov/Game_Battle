@@ -35,6 +35,12 @@ io.on('connection', function(socket) {
 		});
 		
 		/* LOBBY FUNCTIONS */
+
+		/* Handle disconnected sockets */		
+		socket.on('lobby_join', function() {
+			lobby.join(socket);
+		});
+		
 		socket.on('lobby_ssssss', function(){
 			
 		});
