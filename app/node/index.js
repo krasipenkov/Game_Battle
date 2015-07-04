@@ -10,12 +10,12 @@ var port = 3001;
 
 /* Start server */
 server.listen(port, function() {
-	console.log('APP: Server listening at port ' + port);
+	main.server_listen(port);
 });
 
 /* Handle server errors */
 server.on('error', function(err) {
-	console.log('SERVER error: ' + err);
+	main.server_error(err);
 });
 
 /* Socket connection */
@@ -31,7 +31,7 @@ io.on('connection', function(socket) {
 
 		/* Handle socket errors */
 		socket.on('error', function(err) {
-			main.error(socket, err);
+			main.socket_error(socket, err);
 		});
 	} catch (e) {
 		console.log('APP: ' + e);
