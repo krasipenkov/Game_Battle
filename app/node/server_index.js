@@ -7,6 +7,8 @@ global.main = require('./src/server_main')();
 global.lobby = require('./src/server_lobby')();
 global.game = require('./src/server_game')();
 
+global.fb = {};
+
 var port = 3001;
 
 /* Start server */
