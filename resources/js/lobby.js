@@ -27,6 +27,16 @@ $(function()
 	{
 		log('socket lobby_join: ' + data);
 	});
+	
+	/* socket on joined */
+	socket.on('joined', function(user){
+		log('im logged');
+	})
+	
+	/* new user joined to chat */
+	socket.on('newUser', function(user){
+		log('new user');
+	});
 });
 
 function joinLobby()
