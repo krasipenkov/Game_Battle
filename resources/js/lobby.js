@@ -1,6 +1,6 @@
 'use strict';
 
-var socket = io('localhost:3001');
+var socket = io('192.168.1.59:3001');
 var token = gup('token');
 var user = {};
 var image = 'https://graph.facebook.com/1791186603/picture?width=50&height=50&access_token=CAACEdEose0cBABOcPP1Q1BlSq6Lq3WHc6GWrhqQglHinKhauIJZBH1fiaZBPJWN1TkHnEFf2FKhVPyuoYheR1ZCJgZAKffZB88Qcj5mkgIPj61hB5vTP3pZApOj7gqJ1ZBi7u26HOogGE1HEnLOpQGEtQPZAvbQbNtiDyqGL1QLNyIXWMjlF4QVd0oqFY6bKRUN2e1Jdy1wiPinRVWO9oLYK';
@@ -47,7 +47,6 @@ $(function()
 	/* new message to chat */
 	socket.on('newMessage', function(data)
 	{
-		log('new message:');
 		if(user.id == data.user.id)
 			var str = '<div class="chatRow main"><img src="'+image+'" alt="'+data.user.name+'" title="'+data.user.name+'" /><div class="text">'+data.message+'</div></div>';
 		else
@@ -91,6 +90,7 @@ function LobbySendMessage()
 		
 		log('add message to chat: '+message);
 		socket.emit('lobby_message', data);
+		$("#lobby_msg").val('');
 	}
 }
 
