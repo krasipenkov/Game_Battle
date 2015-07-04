@@ -6,7 +6,11 @@
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
    
-    <script type="text/javascript" src="resources/js/jquery-1.11.3.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="resources/js/jquery-1.11.3.min.js"></script>
+
+    <script src="resources/js/functions.js"></script>
+    <script src="resources/js/lobby.js"></script> 
     <script type="text/javascript" src="resources/js/fb-login.js"></script>
 
 </head>
