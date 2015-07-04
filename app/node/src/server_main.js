@@ -2,7 +2,7 @@
 
 module.exports = function(io)
 {
-	var lobby = require('./lobby')(io);
+	var lobby = require('./server_lobby')(io);
 
 	var Main = {};
 
