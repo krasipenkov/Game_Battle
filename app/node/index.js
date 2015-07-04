@@ -38,6 +38,11 @@ io.on('connection', function(socket) {
 		socket.on('error', function(err) {
 			main.socket_error(socket, err);
 		});
+		
+		/* LOBBY FUNCTIONS */
+		socket.on('lobby_ssssss', function(){
+			
+		});
 	} catch (e) {
 		console.log('APP: ' + e);
 	}
