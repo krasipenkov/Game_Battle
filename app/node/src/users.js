@@ -14,15 +14,15 @@ Users.userlist = [];
 /*
  * 
  */
-Users.add = function (name, id) {
-	Users.userlist[name] = id;
+Users.add = function (socket, user) {
+	Users.userlist[user.id] = { user: user, socket_id: socket.id };
 }
 
 /*
  * 
  */
-Users.del = function (name) {
-	delete Users.userlist[name];
+Users.del = function (id) {
+	delete Users.userlist[id];
 }
 
 /*
