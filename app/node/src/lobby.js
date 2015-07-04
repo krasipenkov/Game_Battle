@@ -6,8 +6,7 @@ module.exports = function(io)
 		room: 'Lobby'
 	};
 
-	Lobby.join = function(socket) {
-		
+	Lobby.join = function(socket) {		
 		socket.join(Lobby.room);
 		io.sockets.in(Lobby.room).emit('lobby_join', socket.id);
 	};

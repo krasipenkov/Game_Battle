@@ -8,7 +8,7 @@ module.exports = function(io)
 
 	Main.connect = function(socket) {
 		console.log('SOCKET connect: [' + socket.id + ']');
-		lobby.join(socket);
+		//lobby.join(socket);
 	};
 
 	Main.disconnect = function(socket) {
