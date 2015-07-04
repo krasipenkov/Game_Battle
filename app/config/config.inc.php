@@ -6,6 +6,8 @@ define('ENTITIES_PATH', LOCALPATH.'entities/');
 define('LIB_PATH', LOCALPATH.'lib/');
 define('API_PATH', LOCALPATH.'api/');
 
+error_reporting(E_ALL^E_NOTICE);
+
 class Config
 {
     public static $db = array(
