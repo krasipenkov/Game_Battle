@@ -1,6 +1,6 @@
 'use strict';
 
-var socket = io('192.168.1.59:3001');
+var socket = io('localhost:3001'); //192.168.1.59
 var token = gup('token');
 var user = {};
 var fb_token = '838216586255512|d5b3185abb5b8d442f74ec062eaf189f';
@@ -102,7 +102,7 @@ $(function()
 		}
 		
 		$("#userList").html(user_string);
-		sortUsers('#userList');
+		sortUsers('#userList div.row');
 	});
 
 
