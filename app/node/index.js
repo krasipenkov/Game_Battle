@@ -25,11 +25,6 @@ io.on('connection', function(socket) {
 		main.connect(socket);
 
 		/* Handle disconnected sockets */		
-		socket.on('lobby_join', function() {
-			lobby.join(socket);
-		});
-
-		/* Handle disconnected sockets */		
 		socket.on('disconnect', function() {
 			main.disconnect(socket);
 		});
@@ -40,6 +35,12 @@ io.on('connection', function(socket) {
 		});
 		
 		/* LOBBY FUNCTIONS */
+
+		/* Handle disconnected sockets */		
+		socket.on('lobby_join', function() {
+			lobby.join(socket);
+		});
+		
 		socket.on('lobby_ssssss', function(){
 			
 		});
