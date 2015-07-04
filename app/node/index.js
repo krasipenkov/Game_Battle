@@ -5,7 +5,6 @@ var io = require('socket.io')(server);
 var main = require('./src/main')(io);
 var lobby = require('./src/lobby')(io);
 var game = require('./src/game')(io);
-var users = require('./src/users');
 
 var port = 3001;
 
@@ -36,8 +35,8 @@ io.on('connection', function(socket) {
 		});
 		
 		/* LOBBY FUNCTIONS */	
-		socket.on('lobby_join', function() {
-			lobby.join(socket);
+		socket.on('lobby_join', function(user) {
+			lobby.join(socket, user);
 		});
 
 		/* Handle lobby message */		
