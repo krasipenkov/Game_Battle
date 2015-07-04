@@ -102,7 +102,7 @@ $(function()
 		}
 		
 		$("#userList").html(user_string);
-		sortUsers('#userList');
+		sortUsers('#userList div.row');
 	});
 
 
