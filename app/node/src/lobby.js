@@ -20,7 +20,4 @@ module.exports = function(io)
 	};
 
 	return Lobby;
-	
-	
-	
 }
