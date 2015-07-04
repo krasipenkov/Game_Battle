@@ -21,6 +21,7 @@ module.exports = function(io)
 			socket.emit('joined', user);
 			users.add(socket, user);
 			socket.user_id = user.id;
+			socket.user_name = user.name;
 			
 			console.log("USER LOGGED: "+user.id+ " / "+user.name);
 			Lobby.userList();
