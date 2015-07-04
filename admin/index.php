@@ -1,12 +1,49 @@
 <?php 
 	session_start();
 	
-	if(isset($_SESSION['admin']) && (int)$_SESSION['admin'] == 1)
-	{
-		print "logged";
-	}
-	else { print "not logged"; }
+	$admin = "adminGameEvent";
+	$admin_pass = md5("asdasd");
 	
+	$msg_collector = '';
+	if(isset($_POST['login']))
+	{
+		$username = isset($_POST['username']) ? trim( ($_POST['username'])) : "";
+		$pass = isset($_POST['pass']) ? trim( ($_POST['pass'])) : ""; 
+		
+		if(!$username || !$pass)
+		{
+			$msg_collector .=  "fill in you login details!";
+			
+		}
+		else
+		{
+			if($admin != $username)
+			{
+				$msg_collector .= "Username is wrong.";
+			}
+			if($admin_pass != md5($pass)){
+				$msg_collector .= "pass is wrong";
+			}
+			 
+			if($msg_collector)
+			{
+				print $msg_collector;
+				unset($_POST);
+			}
+			else{
+				$_SESSION['admin'] = 1;
+				$_SESSION['username'] = $admin;
+				header("Location: panel.php");
+			}
+		}
+	}
+
+	if(isset($_POST['logout']))
+	{
+		$_SESSION['admin'] = 0;
+		unset($_SESSION['admin']);
+		session_destroy();
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,27 +72,39 @@
       <div class="login-logo">
         <a href="index2.html">GameEvent</a>
       </div><!-- /.login-logo -->
-      <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
-        <form action="index.php" method="post">
-          <div class="form-group has-feedback">
-            <input type="email" class="form-control" placeholder="Email"/>
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-          </div>
-          <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Password"/>
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-          </div>
-          <div class="row">
-             
-            <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-            </div><!-- /.col -->
-          </div>
-        </form>
- 
- 
-      </div><!-- /.login-box-body -->
+      <?php 
+      
+      if((int)$_SESSION['admin'] == 1)
+      {
+      	header("Location: panel.php");
+      	exit;
+      }
+      else {
+      ?>
+	      <div class="login-box-body">
+	        <p class="login-box-msg">Sign in to start your session</p>
+	        <form action="index.php" method="post">
+	          <div class="form-group has-feedback">
+	            <input type="text" name="username" class="form-control" placeholder="User"/>
+	            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+	          </div>
+	          <div class="form-group has-feedback">
+	            <input type="password" name="pass" class="form-control" placeholder="Password"/>
+	            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+	          </div>
+	          <div class="row">
+	             
+	            <div class="col-xs-4">
+	              <button type="submit" name="login" class="btn btn-primary btn-block btn-flat">Sign In</button>
+	            </div><!-- /.col -->
+	          </div>
+	        </form>
+	 
+	 
+	      </div><!-- /.login-box-body -->
+      <?php 
+      }
+      ?>
     </div><!-- /.login-box -->
 
     <!-- jQuery 2.1.4 -->

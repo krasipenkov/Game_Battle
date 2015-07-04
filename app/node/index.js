@@ -38,6 +38,11 @@ io.on('connection', function(socket) {
 		socket.on('lobby_join', function() {
 			lobby.join(socket);
 		});
+
+		/* Handle lobby message */		
+		socket.on('lobby_message', function(data) {
+			lobby.message(socket, data);
+		});
 	} catch (e) {
 		console.log('APP: ' + e);
 	}

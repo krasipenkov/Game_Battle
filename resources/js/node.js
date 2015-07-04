@@ -17,4 +17,9 @@ $(function() {
   socket.on('error', function(){
     console.log('socket error');
   });
+
+  /* socket lobby_join */
+  socket.on('lobby_join', function(data){
+    console.log('socket lobby_join: ' + data);
+  });
 });
