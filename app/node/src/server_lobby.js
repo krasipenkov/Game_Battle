@@ -13,6 +13,7 @@ module.exports = function()
 	{
 		console.log('LOBBY loggged: [' + socket.id + '] / user token: ' + token);
 		//var user = rest.get('user', token);
+		fb['1'] = {id: 1, 'name': 'adsdasdssad'};
 		var user = Lobby.getFB(token);
 		if(token && user.id && user.name)
 		{
