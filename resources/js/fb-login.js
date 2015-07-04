@@ -49,7 +49,7 @@ function statusChangeCallback(response) {
       console.log('Successful login for: ' + response.name);
       socket.emit('login', response);
       console.log(location.href);
-      location.href = location.href + "lobby.html?"+ response.id;
+      location.href = location.href + "lobby.html?token="+ response.id;
       
       //document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
     });
