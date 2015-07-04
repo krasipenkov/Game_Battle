@@ -1,12 +1,15 @@
 'use strict';
 
+var rest = require('./rest');
+var users = require('./users');
+
 module.exports = function(io)
 {
 	var Lobby = {
 		room: 'Lobby'
 	};
 
-	Lobby.join = function(socket, user) 
+	Lobby.join = function(socket, token) 
 	{
 		console.log('LOBBY loggged: [' + socket.id + '] ' + user.name);
 		socket.join(Lobby.room);
