@@ -1,9 +1,19 @@
 'use strict';
 
-var socket = io('localhost:3001');
+var socket = io('192.168.1.59:3001');
 var token = gup('token');
 var user = {};
 var image = 'http://i00.i.aliimg.com/wsphoto/v0/32296824042/Popular-font-b-Steven-b-font-font-b-Gerrard-b-font-Printed-font-b-Poster-b.jpg';
+
+$(function() 
+{
+	$('#lobby_msg').keypress(function(e) 
+	{
+	    if(e.which == 13) {
+	    	LobbySendMessage();
+	    }
+	});
+});
 
 $(function() 
 {
@@ -106,9 +116,10 @@ function getUsers()
 
 function LobbySendMessage()
 {
-	if(user.id && user.name)
+	var message = $("#lobby_msg").val();
+	
+	if(user.id && user.name && message)
 	{
-		var message = $("#lobby_msg").val();
 		var data = {message: message, user: user};
 		
 		log('add message to chat: '+message);

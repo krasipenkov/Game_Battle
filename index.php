@@ -12,8 +12,6 @@
     <link rel="stylesheet" type="text/css" href="resources/css/lobby.css"/>
  
     <script type="text/javascript" src="resources/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="resources/js/lobby.js"></script>    
-
 </head>
 <body>
     <a class="fb_log_btn" onclick="login();" href="javascript:void(0);"></a>
