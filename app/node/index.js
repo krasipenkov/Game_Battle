@@ -44,6 +44,10 @@ io.on('connection', function(socket) {
 		socket.on('lobby_ssssss', function(){
 			
 		});
+		
+socket.on('lobby_ssssss222', function(){
+			
+		});
 	} catch (e) {
 		console.log('APP: ' + e);
 	}
