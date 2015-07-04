@@ -3,6 +3,8 @@
 var server = require('http').createServer();
 var io = require('socket.io')(server);
 var main = require('./src/main')(io);
+var lobby = require('./src/lobby')(io);
+var game = require('./src/game')(io);
 
 var port = 3001;
 
