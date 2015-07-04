@@ -1,8 +1,11 @@
 var rest = {
 	url: 'http://localhost/test_api.php',
 	
-	send: function(method, object, object_id = '', params)
+	send: function(method, object, object_id, params)
 	{
+		if(!object_id)
+			object_id = '';
+		
 		var url = this.url+object+'/'+object_id;
 		
 		var xmlHttp = new XMLHttpRequest();
