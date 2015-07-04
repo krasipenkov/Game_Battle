@@ -36,17 +36,9 @@ io.on('connection', function(socket) {
 		
 		/* LOBBY FUNCTIONS */
 
-		/* Handle lobby join */		
-		socket.on('lobby_join', function() {
-			lobby.join(socket);
-		});
-
-		socket.on('lobby_ssssss', function(){
-			
-		});
-		
-socket.on('lobby_ssssss222', function(){
-			
+		/* Handle lobby message */		
+		socket.on('lobby_message', function(data) {
+			lobby.message(socket, data);
 		});
 	} catch (e) {
 		console.log('APP: ' + e);
