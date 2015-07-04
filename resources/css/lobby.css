@@ -236,3 +236,46 @@ html, body
     box-shadow: 1px 1px 0px #11A700;
     text-shadow: 1px 1px 0px #13680A;
 }
+
+.sprite { cursor: pointer; background: url('../images/sprite.png') no-repeat top left; width: 20px; height: 20px; vertical-align: middle; display: inline-block; } 
+.sprite.angel { background-position: 0 0; } 
+.sprite.angry { background-position: 0 -30px; } 
+.sprite.bat { background-position: 0 -60px; } 
+.sprite.beer { background-position: 0 -90px; } 
+.sprite.boy { background-position: 0 -120px; } 
+.sprite.cake { background-position: 0 -150px; } 
+.sprite.camera { background-position: 0 -180px; } 
+.sprite.cat { background-position: 0 -210px; } 
+.sprite.clock { background-position: 0 -240px; } 
+.sprite.cocktail { background-position: 0 -270px; } 
+.sprite.confused { background-position: 0 -300px; } 
+.sprite.cry { background-position: 0 -330px; } 
+.sprite.cup { background-position: 0 -360px; } 
+.sprite.devil { background-position: 0 -390px; } 
+.sprite.dog { background-position: 0 -420px; } 
+.sprite.dude_hug { background-position: 0 -450px; } 
+.sprite.email { background-position: 0 -480px; } 
+.sprite.embarassed { background-position: 0 -510px; } 
+.sprite.film { background-position: 0 -540px; } 
+.sprite.girl { background-position: 0 -570px; } 
+.sprite.girl_hug { background-position: 0 -600px; } 
+.sprite.kiss { background-position: 0 -630px; } 
+.sprite.lightbulb { background-position: 0 -660px; } 
+.sprite.love { background-position: 0 -690px; } 
+.sprite.messenger { background-position: 0 -720px; } 
+.sprite.note { background-position: 0 -750px; } 
+.sprite.omg { background-position: 0 -780px; } 
+.sprite.phone { background-position: 0 -810px; } 
+.sprite.present { background-position: 0 -840px; } 
+.sprite.rose { background-position: 0 -870px; } 
+.sprite.sad { background-position: 0 -900px; } 
+.sprite.shade { background-position: 0 -930px; } 
+.sprite.smile { background-position: 0 -960px; } 
+.sprite.star { background-position: 0 -990px; } 
+.sprite.teeth { background-position: 0 -1020px; } 
+.sprite.thumbs_down { background-position: 0 -1050px; } 
+.sprite.thumbs_up { background-position: 0 -1080px; } 
+.sprite.tongue { background-position: 0 -1110px; } 
+.sprite.unlove { background-position: 0 -1140px; } 
+.sprite.wilted_rose { background-position: 0 -1170px; } 
+.sprite.wink { background-position: 0 -1200px; } 

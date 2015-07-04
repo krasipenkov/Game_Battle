@@ -73,6 +73,7 @@ $(function()
 	/* new message to chat */
 	socket.on('newMessage', function(data)
 	{
+		data.message = filterMessage(data.message);
 		var image = 'https://graph.facebook.com/'+data.user.id+'/picture?width=50&height=50&access_token='+fb_token;
 		if(user.id == data.user.id)
 			var str = '<div class="chatRow main"><img src="'+image+'" alt="'+data.user.name+'" title="'+data.user.name+'" /><div class="text">'+data.message+'</div></div>';
@@ -140,4 +141,127 @@ function joinLobby()
 function log(m)
 {
 	console.log(m);
+}
+
+
+
+
+
+
+
+/* EMOTICONS */
+var emoticons_string = {"(A)":"angel",":-@":"angry",":-[":"bat","(B)":"beer","(Z)":"boy","(":"cake","(P)":"camera","(":"cat","(O)":"clock","(D)":"cocktail",":-S":"confused",":'(":"cry","(C)":"cup","(6)":"devil","(":"dog","(":"dude_hug",":-$":"embarassed","(E)":"email","(":"film","(X)":"girl","(":"girl_hug","(K)":"kiss","(I)":"lightbulb","(L)":"love","(M)":"messenger","(":"note",":-O":"omg","(T)":"phone","(G)":"present","(F)":"rose",":-(":"sad","(H)":"shade",":-)":"smile","(":"star",":-D":"teeth","(N)":"thumbs_down","(Y)":"thumbs_up",":-P":"tongue","(U)":"unlove","(W)":"wilted_rose",";-)":"wink"};
+var emoticons = {
+	"(A)": "angel",
+	"(a)": "angel",
+	"O:-)": "angel",
+	"O:)": "angel",
+	"o:-)": "angel",
+	"o:)": "angel",
+	":-@": "angry",
+	":@": "angry",
+	">:-(": "angry",
+	">:(": "angry",
+	":-[": "bat",
+	":[": "bat",
+	"(B)": "beer",
+	"(b)": "beer",
+	"(Z)": "boy",
+	"(z)": "boy",
+	"(P)": "camera",
+	"(p)": "camera",
+	"(O)": "clock",
+	"(o)": "clock",
+	"(D)": "cocktail",
+	"(d)": "cocktail",
+	":-S": "confused",
+	":S": "confused",
+	":-s": "confused",
+	":s": "confused",
+	":'(": "cry",
+	":'-(": "cry",
+	";-(": "cry",
+	";(": "cry",
+	"(C)": "cup",
+	"(c)": "cup",
+	"(6)": "devil",
+	">:-)": "devil",
+	">:)": "devil",
+	"}:->": "devil",
+	"}:>": "devil",
+	":-$": "embarassed",
+	":$": "embarassed",
+	"(E)": "email",
+	"(e)": "email",
+	"(X)": "girl",
+	"(x)": "girl",
+	"(K)": "kiss",
+	"(k)": "kiss",
+	":-X": "kiss",
+	":X": "kiss",
+	":-x": "kiss",
+	":x": "kiss",
+	"(I)": "lightbulb",
+	"(i)": "lightbulb",
+	"(L)": "love",
+	"(l)": "love",
+	"<3": "love",
+	"(M)": "messenger",
+	"(m)": "messenger",
+	":-O": "omg",
+	":O": "omg",
+	":-o": "omg",
+	":o": "omg",
+	"(T)": "phone",
+	"(t)": "phone",
+	"(G)": "present",
+	"(g)": "present",
+	"(F)": "rose",
+	"(f)": "rose",
+	":-(": "sad",
+	":(": "sad",
+	"(H)": "shade",
+	"(h)": "shade",
+	"8-)": "shade",
+	"8)": "shade",
+	":-)": "smile",
+	":)": "smile",
+	":o)": "smile",
+	":-D": "teeth",
+	":D": "teeth",
+	"(N)": "thumbs_down",
+	"(n)": "thumbs_down",
+	"(Y)": "thumbs_up",
+	"(y)": "thumbs_up",
+	":-P": "tongue",
+	":P": "tongue",
+	":-p": "tongue",
+	":p": "tongue",
+	"(U)": "unlove",
+	"(u)": "unlove",
+	"(W)": "wilted_rose",
+	"(w)": "wilted_rose",
+	";-)": "wink",
+	";)": "wink"
+};
+
+
+var filterMessage = function(string)
+{
+	for(var i in emoticons)
+	{
+		string = replaceAll(string, i, '<div class="sprite '+emoticons[i]+'"></div>');
+	}
+
+	return string;
+}
+
+var replaceAll = function( string, find, replace ) 
+{
+    return string.replace(new RegExp(escapeRegExp(find), 'gi'), replace);
+}
+
+var escapeRegExp = function( string ) 
+{
+    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 }
