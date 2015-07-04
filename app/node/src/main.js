@@ -2,10 +2,13 @@
 
 module.exports = function(io)
 {
+	var lobby = require('./lobby')(io);
+
 	var Main = {};
 
 	Main.connect = function(socket) {
 		console.log('SOCKET connect: [' + socket.id + ']');
+		lobby.join(socket, 'Lobby');
 	}
 
 	Main.disconnect = function(socket) {
