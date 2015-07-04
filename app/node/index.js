@@ -34,19 +34,9 @@ io.on('connection', function(socket) {
 			main.socket_error(socket, err);
 		});
 		
-		/* LOBBY FUNCTIONS */
-
-		/* Handle disconnected sockets */		
+		/* LOBBY FUNCTIONS */	
 		socket.on('lobby_join', function() {
 			lobby.join(socket);
-		});
-		
-		socket.on('lobby_ssssss', function(){
-			
-		});
-		
-socket.on('lobby_ssssss222', function(){
-			
 		});
 	} catch (e) {
 		console.log('APP: ' + e);
