@@ -12,6 +12,7 @@ module.exports = function(io)
 
 	Main.disconnect = function(socket) {
 		console.log('SOCKET disconnect: [' + socket.id + ']');
+		lobby.removeUser(socket);
 	};
 
 	Main.socket_error = function(socket, err) {
