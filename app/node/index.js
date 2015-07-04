@@ -31,7 +31,7 @@ io.on('connection', function(socket) {
 
 		/* Handle socket errors */
 		socket.on('error', function(err) {
-			main.error(socket);
+			main.error(socket, err);
 		});
 	} catch (e) {
 		console.log('APP: ' + e);

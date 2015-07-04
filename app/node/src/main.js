@@ -12,7 +12,7 @@ module.exports = function(io)
 		console.log('MAIN disconnect: [' + socket.id + ']');
 	}
 
-	Main.error = function(socket) {
+	Main.error = function(socket, err) {
 		console.log('MAIN error: [' + socket.id + ']');
 	}
 
