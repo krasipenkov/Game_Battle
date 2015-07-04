@@ -22,14 +22,16 @@ io.on('connection', function(socket) {
 		/* Handle connected sockets */
 		main.connect(socket);
 
-		/* Handle disconnected sockets */
-		socket.on('disconnect', main.disconnect(socket));
+		/* Handle disconnected sockets */		
+		socket.on('disconnect', function() {
+			main.disconnect(socket);
+		});
 
 		/* Handle socket errors */
 		socket.on('error', function(err) {
-			console.log('SOCKET error: ' + err);
+			main.error(socket);
 		});
 	} catch (e) {
-		console.log('APP: ' + err);
+		console.log('APP: ' + e);
 	}
 });
