@@ -1,15 +1,15 @@
 'use strict';
 
+var socket = io('localhost:3001');
+var token = gup('token');
+
 $(function() 
 {
-	var token = gup('token');
-	log('token is: '+token);
-	var socket = io('localhost:3001');
-
 	/* socket connect */
 	socket.on('connect', function () 
 	{
 		log('socket connect');
+		joinLobby();
 	});
 
 	/* socket disconnect */
@@ -27,9 +27,13 @@ $(function()
 	{
 		log('socket lobby_join: ' + data);
 	});
-	
-	socket.emit('lobby_join', token);
 });
+
+function joinLobby()
+{
+	socket.emit('lobby_join', token);
+	log("send join command to lobby");
+}
 
 function log(m)
 {
