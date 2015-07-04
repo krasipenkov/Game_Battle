@@ -4,11 +4,11 @@ module.exports = function()
 {
 	var Main = {};
 
-	Main.socket_connect = function(socket) {
+	Main.connect = function(socket) {
 		console.log('SOCKET connect: [' + socket.id + ']');
 	};
 
-	Main.socket_disconnect = function(socket) {
+	Main.disconnect = function(socket) {
 		console.log('SOCKET disconnect: [' + socket.id + ']');
 		lobby.removeUser(socket);
 		game.delete(socket);

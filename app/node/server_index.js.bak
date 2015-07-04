@@ -7,8 +7,6 @@ global.main = require('./src/server_main')();
 global.lobby = require('./src/server_lobby')();
 global.game = require('./src/server_game')();
 
-global.fb = {};
-
 var port = 3001;
 
 /* Start server */
@@ -29,11 +27,11 @@ io.on('connection', function(socket)
 		/* SOCKET FUNCTIONS */
 
 		/* Handle connected sockets */
-		main.socket_connect(socket);
+		main.connect(socket);
 
 		/* Handle disconnected sockets */		
 		socket.on('disconnect', function() {
-			main.socket_disconnect(socket);
+			main.disconnect(socket);
 		});
 
 		/* Handle socket errors */
@@ -56,10 +54,6 @@ io.on('connection', function(socket)
 		/* Handle lobby users */		
 		socket.on('lobby_users', function() {
 			lobby.getUsers(socket);
-		});
-		
-		socket.on('login', function(user){
-			lobby.login(user);
 		});
 
 		/* GAME FUNCTIONS */

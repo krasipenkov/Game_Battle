@@ -77,7 +77,7 @@ $(function()
 		else
 			var str = '<div class="chatRow"><img src="'+image+'" alt="'+data.user.name+'" title="'+data.user.name+'" /><div class="text">'+data.message+'</div></div>';
 		
-		$(".chatConversationHolder").append(str);
+		$(".chatConversationHolder").append(str).animate({ scrollTop: $(document).height() }, "slow");
 	});
 	
 	/* get user list */

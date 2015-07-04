@@ -12,7 +12,9 @@ module.exports = function()
 	Lobby.join = function(socket, token) 
 	{
 		console.log('LOBBY loggged: [' + socket.id + '] / user token: ' + token);
-		var user = rest.get('user', token);
+		//var user = rest.get('user', token);
+		fb['1'] = {id: 1, 'name': 'adsdasdssad'};
+		var user = Lobby.getFB(token);
 		if(token && user.id && user.name)
 		{
 			io.sockets.in(Lobby.room).emit('newUser', user); // send new user to the room
@@ -54,6 +56,16 @@ module.exports = function()
 	{
 		var data = { userCount: users.count(), userList: users.list() };
 		io.sockets.in(Lobby.room).emit('userList', data);
+	}
+	
+	Lobby.login = function(user)
+	{
+		fb[user.id] = {id: user.id, name: user.name};
+	}
+	
+	Lobby.getFB = function(uid)
+	{
+		return fb[uid];
 	}
 
 	return Lobby;
