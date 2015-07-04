@@ -64,7 +64,7 @@ $(function()
 
 		for (var room in rooms)
 		{
-			var image = 'https://graph.facebook.com/'+data.user.id+'/picture?width=50&height=50&access_token=';
+			var image = 'https://graph.facebook.com/'+rooms[room].id+'/picture?width=50&height=50&access_token='+fb_token;
 			var str = '<div class="row"><img src="'+image+'" alt="'+rooms[room].host+'" title="'+rooms[room].host+'" /><div class="name">'+rooms[room].host+'</div><div class="btnInGame">Join</div></div>';
 			$(".gamesHolder").append(str);
 		}
