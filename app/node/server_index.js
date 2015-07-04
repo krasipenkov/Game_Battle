@@ -20,8 +20,10 @@ server.on('error', function(err) {
 });
 
 /* Socket connection */
-io.on('connection', function(socket) {	
-	try {		
+io.on('connection', function(socket) 
+{	
+	try 
+	{		
 		/* Handle connected sockets */
 		main.connect(socket);
 
@@ -44,7 +46,42 @@ io.on('connection', function(socket) {
 		socket.on('lobby_message', function(data) {
 			lobby.message(socket, data);
 		});
-	} catch (e) {
-		console.log('APP: ' + e);
+
+		/* Handle lobby users */		
+		socket.on('lobby_users', function(data) {
+			lobby.getUsers(socket);
+		});
+
+		/* GAME FUNCTIONS */
+		socket.on('game_open', function() {
+			game.open(socket);
+		});
+	} 
+	catch (e) 
+	{
+		dumpError(e);
 	}
 });
+
+
+function log(err) 
+{
+	if (typeof err === 'object') 
+	{
+		if (err.message) 
+		{
+			console.log('Message: ' + err.message)
+		}
+		
+		if (err.stack) 
+		{
+			console.log('Stacktrace:')
+			console.log('====================')
+			console.log(err.stack);
+		}
+	} 
+	else 
+	{
+		console.log(err);
+	}
+}
