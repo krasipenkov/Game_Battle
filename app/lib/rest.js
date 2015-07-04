@@ -19,17 +19,17 @@ var rest = {
 	get: function(object, object_id)
 	{
 		return this.send('GET', object, object_id);
-	}
+	},
 	
 	del: function(object, object_id)
 	{
 		return this.send('DELETE', object, object_id);
-	}
+	},
 	
 	post: function(object, params)
 	{
 		return this.send('POST', object, '', params);
-	}
+	},
 	
 	put: function(object, object_id, params)
 	{
