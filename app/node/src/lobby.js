@@ -1,7 +1,5 @@
 'use strict';
 
-var users = require('./src/users');
-
 module.exports = function(io)
 {
 	var Lobby = {
