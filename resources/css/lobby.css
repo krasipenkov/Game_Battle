@@ -200,6 +200,7 @@ html, body
 {
     float: left;
     margin-right: 15px; 
+    height: 30px;
 }
 .chatRow.main img
 {

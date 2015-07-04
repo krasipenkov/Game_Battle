@@ -14,7 +14,7 @@ module.exports = function(io)
 		console.log('LOBBY loggged: [' + socket.id + '] / user token: ' + token);
 		var user = rest.get('user', token);
 		if(token && user.id && user.name)
-		{	
+		{
 			io.sockets.in(Lobby.room).emit('newUser', user); // send new user to the room
 			
 			socket.join(Lobby.room); // join to room
@@ -23,6 +23,7 @@ module.exports = function(io)
 			socket.user_id = user.id;
 			
 			console.log("USER LOGGED: "+user.id+ " / "+user.name);
+			Lobby.userList();
 		}
 	};
 
@@ -30,7 +31,7 @@ module.exports = function(io)
 	{
 		console.log('LOBBY message: [' + socket.id + '] ' + data.message);
 		io.sockets.in(Lobby.room).emit('newMessage', data);
-		console.log('rest resp: '+rest.post('chat', data));
+		rest.post('chat', data);
 	};
 	
 	Lobby.getUsers = function(socket)
@@ -42,7 +43,15 @@ module.exports = function(io)
 	
 	Lobby.removeUser = function(socket)
 	{
+		console.log("REMOVE USER: "+socket.user_id);
 		users.del(socket.user_id);
+		Lobby.userList();
+	}
+	
+	Lobby.userList = function()
+	{
+		var data = { userCount: users.count(), userList: users.list() };
+		io.sockets.in(Lobby.room).emit('userList', data);
 	}
 
 	return Lobby;

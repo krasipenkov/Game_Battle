@@ -35,7 +35,6 @@ $(function()
 	{
 		user = u;
 		log('im logged');
-		sendMessage();
 	})
 	
 	/* new user joined to chat */
@@ -48,15 +47,33 @@ $(function()
 	/* new message to chat */
 	socket.on('newMessage', function(data)
 	{
-		log('new message: '+data);
-		getUsers();
+		log('new message:');
+		if(user.id == data.user.id)
+			var str = '<div class="chatRow main"><img src="'+image+'" alt="'+data.user.name+'" title="'+data.user.name+'" /><div class="text">'+data.message+'</div></div>';
+		else
+			var str = '<div class="chatRow"><img src="'+image+'" alt="'+data.user.name+'" title="'+data.user.name+'" /><div class="text">'+data.message+'</div></div>';
+		
+		$(".chatConversationHolder").append(str);
 	});
 	
 	/* get user list */
 	socket.on('userList', function(data)
 	{
 		log('getting user list');
-		$("#userCount").html('Chat: '+data.userCount+' online');
+		$("#userCount").html('PLAYERS: '+data.userCount+' online');
+		var user_string = '';
+		
+		for (var key in data.userList) 
+		{
+		   if (data.userList.hasOwnProperty(key)) 
+		   {
+		       var obj = data.userList[key];
+		       var u = obj.user;
+		       user_string = user_string + '<div class="row"><img src="'+image+'" alt="'+u.name+'" title="'+u.name+'" /><div class="name">'+u.name+'</div></div>';
+		    }
+		}
+		
+		$("#userList").html(user_string);
 	});
 });
 
@@ -65,11 +82,11 @@ function getUsers()
 	socket.emit('lobby_users');
 }
 
-function sendMessage()
+function LobbySendMessage()
 {
 	if(user.id && user.name)
 	{
-		var message = "Tetetete";
+		var message = $("#lobby_msg").val();
 		var data = {message: message, user: user};
 		
 		log('add message to chat: '+message);

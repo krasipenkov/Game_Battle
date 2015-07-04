@@ -25,6 +25,7 @@ rest.get = function(object, object_id)
 	var user = new Array();
 	user[1] = {'name': 'Kostadin Buglow', 'id': '1'};
 	user[2] = {'name': 'Djamal', 'id': '2'};
+	user[3] = {'name': 'Iwan', 'id': '3'};
 	return user[object_id];
 	return this.send('GET', object, object_id);
 };
