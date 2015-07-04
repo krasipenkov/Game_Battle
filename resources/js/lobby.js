@@ -47,6 +47,7 @@ $(function()
 	socket.on('newMessage', function(data)
 	{
 		log('new message: '+data);
+		getUsers();
 	});
 	
 	/* get user list */

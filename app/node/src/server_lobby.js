@@ -35,7 +35,7 @@ module.exports = function(io)
 	Lobby.getUsers = function(socket)
 	{
 		console.log("LOBBY get users");
-		var data = { userCount: users.count, userList: users.list };
+		var data = { userCount: users.count(), userList: users.list() };
 		socket.emit('userList', data);
 	}
 
