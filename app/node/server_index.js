@@ -61,6 +61,11 @@ io.on('connection', function(socket)
 		socket.on('game_open', function() {
 			game.open(socket);
 		});
+
+		/* Handle game open */
+		socket.on('game_list', function() {
+			game.list(socket);
+		});
 	} 
 	catch (e) 
 	{
