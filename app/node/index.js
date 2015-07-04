@@ -36,8 +36,8 @@ io.on('connection', function(socket) {
 		});
 		
 		/* LOBBY FUNCTIONS */	
-		socket.on('lobby_join', function(user) {
-			lobby.join(socket, user);
+		socket.on('lobby_join', function(token) {
+			lobby.join(socket, token);
 		});
 
 		/* Handle lobby message */		
