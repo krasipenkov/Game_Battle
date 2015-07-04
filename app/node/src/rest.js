@@ -21,6 +21,8 @@ var rest = {
 
 	get: function(object, object_id)
 	{
+		var user = {'name': 'Kostadin Buglow', 'id': '1'};
+		return user;
 		return this.send('GET', object, object_id);
 	},
 	
