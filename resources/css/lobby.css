@@ -178,7 +178,8 @@ html, body
 .chatRow
 {
     width: 95%;
-    height: 40px;
+    /*height: 40px;  */
+    min-height: 40px;
     padding: 5px 10px;
     float: left;
     clear: both;
@@ -212,7 +213,9 @@ html, body
 .chatRow .text
 {
     float: left;
-    height: 30px;
+    /*height: 30px;*/
+    width: calc(100% - 45px);
+    min-height: 30px;
     line-height: 30px;
     font-size: 18px;
     color: #888;
