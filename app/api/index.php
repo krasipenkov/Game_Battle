@@ -1,25 +1,20 @@
-<?
+<?php
 
-require_once '../config/config.inc.php';
-require_once '../config/error.consts.php';
+use app\api\Router;
+use app\api\Request;
 
-require_once LIB_PATH.'db/DB.php';
-require_once ENTITIES_PATH.'User.php';
-require_once API_PATH.'Response.php';
+require 'core/autoload.php';
 
-use app\config\Config;
-use app\lib\db\DB;
-use app\api\Response;
+$r = new Router(new Request);
 
-DB::getInstance();
+$r->map('get', '/user/([0-9]+)', 'getUsers/$1');
+$r->map('post', '/user/', 'insertUser');
+$r->map('put', '/user/', 'updateUser/$1');
+$r->map('delete', '/user/([0-9]+)', 'deleteUser/$1');
 
+$r->map('get', '/chat/([0-9]+)', 'getUsers/$1');
+$r->map('post', '/chat/', 'insertUser');
+$r->map('put', '/chat/', 'updateUser/$1');
+$r->map('delete', '/chat/([0-9]+)', 'deleteUser/$1');
 
-
-use app\entities\User;
-
-$user = new User();
-$data = ($user->getUser());
-$response = new Response($data);
-
-echo $response->getResponse();
-
+$r->execute();

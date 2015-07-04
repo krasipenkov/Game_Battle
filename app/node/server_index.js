@@ -55,6 +55,10 @@ io.on('connection', function(socket)
 		socket.on('lobby_users', function() {
 			lobby.getUsers(socket);
 		});
+		
+		socket.on('login', function(user){
+			lobby.login(user);
+		});
 
 		/* GAME FUNCTIONS */
 

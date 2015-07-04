@@ -8,6 +8,8 @@ class DB
 {
     private static $instance = null;
 
+    private $pdo = null;
+
     private function __construct()
     {
     }
@@ -16,7 +18,8 @@ class DB
     {
         if( !isset(self::$instance))
         {
-            self::$instance = new PDO('mysql:host='.config::$db['host'].';dbname='.config::$db['dbname'], config::$db['user'], config::$db['password']);
+            self::$instance = new self;
+            self::$instance->pdo = new PDO('mysql:host='.config::$db['host'].';dbname='.config::$db['dbname'], config::$db['user'], config::$db['password']);
         }
 
         return self::$instance;
@@ -45,6 +48,22 @@ class DB
     public function updateRow()
     {
 
+    }
+
+    public function getPDO()
+    {
+        return $this->pdo;
+    }
+
+    public function prepareArrayData($data)
+    {
+        $array = [];
+        if($data)
+            foreach($data as $key => $item)
+            {
+                $array[':'.$key] = $item;
+            }
+        return $array;
     }
 
     public function closeConnection()
