@@ -3,7 +3,7 @@
 var socket = io('192.168.1.59:3001');
 var token = gup('token');
 var user = {};
-var image = 'http://i00.i.aliimg.com/wsphoto/v0/32296824042/Popular-font-b-Steven-b-font-font-b-Gerrard-b-font-Printed-font-b-Poster-b.jpg';
+var fb_token = '838216586255512|d5b3185abb5b8d442f74ec062eaf189f';
 
 $(function() 
 {
@@ -64,6 +64,7 @@ $(function()
 
 		for (var room in rooms)
 		{
+			var image = 'https://graph.facebook.com/'+data.user.id+'/picture?width=50&height=50&access_token=';
 			var str = '<div class="row"><img src="'+image+'" alt="'+rooms[room].host+'" title="'+rooms[room].host+'" /><div class="name">'+rooms[room].host+'</div><div class="btnInGame">Join</div></div>';
 			$(".gamesHolder").append(str);
 		}
@@ -72,6 +73,7 @@ $(function()
 	/* new message to chat */
 	socket.on('newMessage', function(data)
 	{
+		var image = 'https://graph.facebook.com/'+data.user.id+'/picture?width=50&height=50&access_token='+fb_token;
 		if(user.id == data.user.id)
 			var str = '<div class="chatRow main"><img src="'+image+'" alt="'+data.user.name+'" title="'+data.user.name+'" /><div class="text">'+data.message+'</div></div>';
 		else
@@ -93,6 +95,7 @@ $(function()
 		   {
 		       var obj = data.userList[key];
 		       var u = obj.user;
+		       var image = 'https://graph.facebook.com/'+u.id+'/picture?width=50&height=50&access_token='+fb_token;
 		       user_string = user_string + '<div class="row"><img src="'+image+'" alt="'+u.name+'" title="'+u.name+'" /><div class="name">'+u.name+'</div></div>';
 		    }
 		}
