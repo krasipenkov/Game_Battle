@@ -80,7 +80,7 @@ $(function()
 		else
 			var str = '<div class="chatRow"><img src="'+image+'" alt="'+data.user.name+'" title="'+data.user.name+'" /><div class="text">'+data.message+'</div></div>';
 		
-		//$(".chatConversationHolder").append(str).animate({ scrollTop: $('.chatConversationHolder').height() }, "fast");
+		$(".chatConversationHolder").append(str).animate({ scrollTop: $('.chatConversationHolder').height() }, "fast");
 	});
 	
 	/* get user list */
