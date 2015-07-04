@@ -22,6 +22,8 @@ server.on('error', function(err) {
 /* Socket connection */
 io.on('connection', function(socket) {	
 	try {		
+		/* SOCKET FUNCTIONS */
+
 		/* Handle connected sockets */
 		main.connect(socket);
 
@@ -36,6 +38,8 @@ io.on('connection', function(socket) {
 		});
 		
 		/* LOBBY FUNCTIONS */	
+
+		/* Handle lobby join */
 		socket.on('lobby_join', function(token) {
 			lobby.join(socket, token);
 		});
@@ -51,6 +55,8 @@ io.on('connection', function(socket) {
 		});
 
 		/* GAME FUNCTIONS */
+
+		/* Handle game open */
 		socket.on('game_open', function() {
 			game.open(socket);
 		});
@@ -62,7 +68,7 @@ io.on('connection', function(socket) {
 function dumpError(err) {
   if (typeof err === 'object') {
     if (err.message) {
-      console.log('\nMessage: ' + err.message)
+      console.log('Message: ' + err.message)
     }
     if (err.stack) {
       console.log('\nStacktrace:')

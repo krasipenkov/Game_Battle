@@ -22,8 +22,9 @@ server.on('error', function(err) {
 /* Socket connection */
 io.on('connection', function(socket) 
 {	
-	try 
-	{		
+	try {		
+		/* SOCKET FUNCTIONS */
+
 		/* Handle connected sockets */
 		main.connect(socket);
 
@@ -38,6 +39,8 @@ io.on('connection', function(socket)
 		});
 		
 		/* LOBBY FUNCTIONS */	
+
+		/* Handle lobby join */
 		socket.on('lobby_join', function(token) {
 			lobby.join(socket, token);
 		});
@@ -53,6 +56,8 @@ io.on('connection', function(socket)
 		});
 
 		/* GAME FUNCTIONS */
+
+		/* Handle game open */
 		socket.on('game_open', function() {
 			game.open(socket);
 		});
