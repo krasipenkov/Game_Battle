@@ -2,6 +2,7 @@
 
 var server = require('http').createServer();
 var io = require('socket.io')(server);
+var main = require('./src/main')(io);
 
 var port = 3001;
 
@@ -12,22 +13,21 @@ server.listen(port, function() {
 
 /* Handle server errors */
 server.on('error', function(err) {
-	console.log('APP:' + err);
+	console.log('SERVER error: ' + err);
 });
 
-/* Handle connected sockets */
+/* Socket connection */
 io.on('connection', function(socket) {	
 	try {		
+		/* Handle connected sockets */
 		main.connect(socket);
 
 		/* Handle disconnected sockets */
-		socket.on('disconnect', function() {
-
-		});
+		socket.on('disconnect', main.disconnect(socket));
 
 		/* Handle socket errors */
 		socket.on('error', function(err) {
-			console.log('APP: ' + err);
+			console.log('SOCKET error: ' + err);
 		});
 	} catch (e) {
 		console.log('APP: ' + err);
