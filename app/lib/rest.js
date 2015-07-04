@@ -11,9 +11,10 @@ function readCookie(name) {
     }
     return null;
 }
+
 var rest = {
 	//url: '/test_api.php/',
-    url: '/app/api/index.php/',
+    url: '/app/api/',
 	
 	send: function(method, object, object_id, params, callback)
 	{
@@ -29,8 +30,11 @@ var rest = {
 		xmlHttp.open( method, url, true );
 
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-        //xmlHttp.setRequestHeader("Content-length", params.length);
+        console.log(params);
+        if(params)
+        {
+            xmlHttp.setRequestHeader("Content-length", params.length);
+        }
         //xmlHttp.setRequestHeader("Connection", "close");
 
 
@@ -79,3 +83,15 @@ var rest = {
         }
     }
 }
+
+
+var restResponseHandler = function(){
+    this.user = {
+        getUser: function(data){
+            if(data)
+            {
+                console.log(data);
+            }
+        }
+    }
+};

@@ -66,6 +66,20 @@ class DB
         return $array;
     }
 
+    public function buildUpdateFields($data)
+    {
+        $str = '';
+        if($data)
+            foreach($data as $key => $item)
+            {
+                if(!$str)
+                    $str = $key.'=:'.$key;
+                else
+                    $str .= ','.$key.'=:'.$key;
+            }
+        return $str;
+    }
+
     public function closeConnection()
     {
         $this->pdo = null;

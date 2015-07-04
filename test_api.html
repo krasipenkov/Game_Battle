@@ -3,7 +3,7 @@
 		<title>OX</title>
 		<script src="/resources/js/jquery-1.11.3.min.js"></script>
 		<script src="/resources/js/functions.js"></script>
-		<script src="/app/node/src/rest.js"></script>
+		<script src="/app/lib/rest.js"></script>
 		<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 		<script src="/resources/js/lobby.js"></script>
 	</head>
@@ -11,6 +11,25 @@
 
         <script>
             rest.login('djamal@tarasoft.bg', 'a8f5f167f44f4964e6c998dee827110c');
+            // Response handler
+            var respHandler = new restResponseHandler();
+
+
+
+
+
+            // User Response handler
+            var userRespHandler = respHandler.user;
+            // Get single user
+            rest.get('user', 1, '', userRespHandler.getUser);
+            // Get all users
+            rest.get('user', '', '', userRespHandler.getUser);
+            // Insert
+            rest.post('user', '&email=11111&password=14324324324324&fid=3&username=afrgregre', userRespHandler.getUser);
+            // Update
+            rest.put('user', '63', '&email=232132132', userRespHandler.getUser);
+            // Delete
+            //rest.del('user', '63');
         </script>
 	</body>
 </html>
