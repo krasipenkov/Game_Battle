@@ -237,7 +237,7 @@ html, body
     text-shadow: 1px 1px 0px #13680A;
 }
 
-.sprite { cursor: pointer; background: url('../images/sprite.png') no-repeat top left; width: 20px; height: 20px; vertical-align: middle; display: inline-block; } 
+.sprite { margin-top: 5px; background: url('../images/sprite.png') no-repeat top left; width: 20px; height: 20px; vertical-align: middle; display: inline-block; } 
 .sprite.angel { background-position: 0 0; } 
 .sprite.angry { background-position: 0 -30px; } 
 .sprite.bat { background-position: 0 -60px; } 
