@@ -2,6 +2,7 @@
 
 var rest = require('./server_rest');
 var users = require('./server_users');
+var messages = new Array();
 
 module.exports = function()
 {
@@ -13,7 +14,7 @@ module.exports = function()
 	{
 		console.log('LOBBY loggged: [' + socket.id + '] / user token: ' + token);
 		//var user = rest.get('user', token);
-		fb['1'] = {id: 1, 'name': 'adsdasdssad'};
+		
 		var user = Lobby.getFB(token);
 		if(token && user.id && user.name)
 		{
@@ -28,6 +29,12 @@ module.exports = function()
 			console.log("USER LOGGED: "+user.id+ " / "+user.name);
 			Lobby.userList();
 			game.list(socket);
+			
+			// load messages
+			for(var k in messages)
+			{
+				socket.emit('newMessage', messages[k]);
+			}
 		}
 	};
 
@@ -36,6 +43,13 @@ module.exports = function()
 		console.log('LOBBY message: [' + socket.id + '] ' + data.message);
 		io.sockets.in(Lobby.room).emit('newMessage', data);
 		rest.post('chat', data);
+		
+		var count_messages = messages.length;
+		if(count_messages == 100)
+			messages.splice(0, 1);
+		
+		messages.push(data);
+		console.log(messages);
 	};
 	
 	Lobby.getUsers = function(socket)
