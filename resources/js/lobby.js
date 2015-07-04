@@ -74,7 +74,7 @@ $(function()
 	socket.on('newMessage', function(data)
 	{
 		data.message = filterMessage(data.message);
-		var image = 'https://graph.facebook.com/'+data.user.id+'/picture?width=50&height=50&access_token='+fb_token;
+		var image = 'https://graph.facebook.com/'+data.user.id+'/picture?width=30&height=30&access_token='+fb_token;
 		if(user.id == data.user.id)
 			var str = '<div class="chatRow main"><img src="'+image+'" alt="'+data.user.name+'" title="'+data.user.name+'" /><div class="text">'+data.message+'</div></div>';
 		else
