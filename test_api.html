@@ -10,18 +10,15 @@
 	<body>
 
         <script>
-            rest.login('djamal@tarasoft.bg', 'a8f5f167f44f4964e6c998dee827110c');
+            //rest.login('djamal@tarasoft.bg', 'a8f5f167f44f4964e6c998dee827110c');
             // Response handler
             var respHandler = new restResponseHandler();
 
-
-
-
-
             // User Response handler
             var userRespHandler = respHandler.user;
+
             // Get single user
-            rest.get('user', 1, '', userRespHandler.getUser);
+            rest.get('user', 64, '', userRespHandler.getUser);
             // Get all users
             rest.get('user', '', '', userRespHandler.getUser);
             // Insert
@@ -30,6 +27,8 @@
             rest.put('user', '63', '&email=232132132', userRespHandler.getUser);
             // Delete
             //rest.del('user', '63');
+
+            rest.post('login', '&user=djamal@tarasoft.bg&pass=a8f5f167f44f4964e6c998dee827110c', userRespHandler.setToken);
         </script>
 	</body>
 </html>

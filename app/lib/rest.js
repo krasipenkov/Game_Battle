@@ -30,7 +30,7 @@ var rest = {
 		xmlHttp.open( method, url, true );
 
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        console.log(params);
+        //console.log(params);
         if(params)
         {
             xmlHttp.setRequestHeader("Content-length", params.length);
@@ -70,18 +70,6 @@ var rest = {
 		return this.send('PUT', object, object_id, params, callback);
 	},
 
-    login: function(user, pass)
-    {
-        this.send('POST', 'login', '', '', this.setToken);
-    },
-    setToken: function(resp)
-    {
-        if(resp.data.token.length > 0)
-        {
-            var token = resp.data.token;
-            document.cookie = 'token='+token;
-        }
-    }
 }
 
 
@@ -90,7 +78,15 @@ var restResponseHandler = function(){
         getUser: function(data){
             if(data)
             {
-                console.log(data);
+                //console.log(data);
+            }
+        },
+        setToken: function(resp)
+        {
+            if(resp.data)
+            {
+                var token = resp.data.token;
+                document.cookie = 'token='+token;
             }
         }
     }

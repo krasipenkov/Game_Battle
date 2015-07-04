@@ -12,7 +12,7 @@ class Response
     public function setResponse($data, $error = false)
     {
         if($error) {
-            $this->output = ['error' => 1, 'msg' => $data];
+            $this->output = ['error' => true, 'msg' => $data];
             return;
         }
         $this->output = ['data' => $data];

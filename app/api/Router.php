@@ -29,14 +29,25 @@ class Router {
 	
 	public function execute() {
         $this->uri = trim($this->uri, '/');
+
 		foreach( $this->routesArray[strtolower($this->method)] as $route ) {
 			if ( preg_match( '~^' . $route['pattern'] . '$~i', $this->uri, $params ) ) {
-                $node = ucfirst(explode('/', $this->uri)[0]);
-                $n = 'app\\entities\\'.$node;
-				$u = new $n($this->requestData);
-                $funcParams = $params;
-                array_shift($funcParams);
-                return $this->callFunc($u, explode('/', $route['callback'])[0], $funcParams);
+
+                switch ($route['callback'])
+                {
+                    case $route['callback'] instanceof \Closure:
+                        $route['callback']();
+                        break;
+                    default:
+                        $node = ucfirst(explode('/', $this->uri)[0]);
+                        $n = 'app\\entities\\'.$node;
+                        $u = new $n($this->requestData);
+                        $funcParams = $params;
+                        array_shift($funcParams);
+                        return $this->callFunc($u, explode('/', $route['callback'])[0], $funcParams);
+                        break;
+                }
+
 			}
 		}
 		

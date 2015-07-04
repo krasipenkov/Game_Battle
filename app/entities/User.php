@@ -4,7 +4,7 @@ namespace app\entities;
 use app\lib\db\DB;
 use PDO;
 use Exception;
-use app\lib\acl\Auth;
+
 
 
 
@@ -140,11 +140,7 @@ class User
         return false;
     }
 
-    public function login()
-    {
-        $Auth = new Auth();
-        return ['token' => $Auth->tryToLogin()];
-    }
+
 
 
 }
