@@ -45,6 +45,11 @@ io.on('connection', function(socket) {
 			lobby.message(socket, data);
 		});
 
+		/* Handle lobby users */		
+		socket.on('lobby_users', function(data) {
+			lobby.getUsers(socket);
+		});
+
 		/* GAME FUNCTIONS */
 		socket.on('game_open', function() {
 			game.open(socket);
