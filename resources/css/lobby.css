@@ -101,6 +101,7 @@ html, body
 {
     float: left;
     margin-right: 15px;    
+    height: 50px;
 }
 .row .name
 {
@@ -200,6 +201,7 @@ html, body
 {
     float: left;
     margin-right: 15px; 
+    height: 30px;
 }
 .chatRow.main img
 {

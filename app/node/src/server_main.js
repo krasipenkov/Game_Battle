@@ -1,18 +1,17 @@
 'use strict';
 
-module.exports = function(io)
+module.exports = function()
 {
-	var lobby = require('./server_lobby')(io);
-
 	var Main = {};
 
 	Main.connect = function(socket) {
 		console.log('SOCKET connect: [' + socket.id + ']');
-		//lobby.join(socket);
 	};
 
 	Main.disconnect = function(socket) {
 		console.log('SOCKET disconnect: [' + socket.id + ']');
+		lobby.removeUser(socket);
+		game.delete(socket);
 	};
 
 	Main.socket_error = function(socket, err) {

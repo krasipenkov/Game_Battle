@@ -5,11 +5,9 @@
     
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" type="text/css" href="resources/css/lobby.css"/>
- 
+   
     <script type="text/javascript" src="resources/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="resources/js/fb-login.js"></script> 
+    <script type="text/javascript" src="resources/js/fb-login.js"></script>
 
 </head>
 <body>

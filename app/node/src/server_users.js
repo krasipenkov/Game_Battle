@@ -9,13 +9,16 @@ var Users = {};
 /*
  * 
  */
-Users.userlist = [];
+Users.userlist = {};
 
 /*
  * 
  */
 Users.add = function (socket, user) {
-	Users.userlist[user.id] = { user: user, socket_id: socket.id };
+	if(socket.id && user.id)
+	{
+		Users.userlist[user.id] = { user: user, socket_id: socket.id };
+	}
 }
 
 /*
@@ -36,29 +39,14 @@ Users.get = function (name) {
  * 
  */
 Users.count = function () {
-	return Users.userlist.length;
+	return Object.keys(Users.userlist).length;
 }
 
 /*
  * 
  */
 Users.list = function () {
-	return Object.keys(Users.userlist);
-}
-
-/*
- * 
- */
-Users.listtv = function () {
-	var tvs = Object.keys(Users.userlist);
-	
-	for(var i = tvs.length - 1; i >= 0; i--) {
-		if(tvs[i].substring(0, 3) == "WWW") {
-		   tvs.splice(i, 1);
-		}
-	}
-	
-	return tvs;
+	return (Users.userlist);
 }
 
 /* */

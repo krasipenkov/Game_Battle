@@ -4,6 +4,7 @@ namespace app\entities;
 use app\lib\db\DB;
 use PDO;
 use Exception;
+use app\lib\acl\Auth;
 
 class User
 {
@@ -21,7 +22,7 @@ class User
             $where .= ' AND id=:id ';
             $params[':id'] = $id;
         }
-        $statement = DB::getInstance()->prepare("SELECT ".$this->fields." FROM ".$this->table." WHERE 1 $where");
+        $statement = DB::getInstance()->getPDO()->prepare("SELECT ".$this->fields." FROM ".$this->table." WHERE 1 $where");
         $statement->execute($params);
 
         if($id)
@@ -36,37 +37,20 @@ class User
         return $result;
     }
 
-    public function insertUser($data)
+    public function updateUser($id, $data)
     {
         $id = (int)$id;
 
 
         $parameters = array();
-        $updateArray = array();
+        $updateArray = $data;
 
-        if(isset($data['title']))
-        {
-            $updateArray[] = 'title=:title';
-            $parameters[':title'] = $data['title'];
-            //$statement->bindValue(':title', $data['title'], PDO::PARAM_STR);
-        }
-        if(isset($data['text']))
-        {
-            $updateArray[] = 'text=:text';
-            $parameters[':text'] = $data['text'];
-            //$statement->bindValue(':text', $data['text'], PDO::PARAM_STR);
-        }
-        if(isset($data['date']))
-        {
-            $data['date'] = date('Y-m-d', strtotime($data['date']));
-            $updateArray[] = 'date=:date';
-            $parameters[':date'] = $data['date'];
-            //$statement->bindValue(':date', $data['date'], PDO::PARAM_STR);
-        }
+        $parameters = DB::getInstance()->prepareArrayData($data);
+
         if($updateArray)
         {
             $parameters[':id'] = $id;
-            $statement = DB::getInstance()->prepare("UPDATE '.$this->table.' SET ".implode(',', $updateArray)." WHERE id=:id");
+            $statement = DB::getInstance()->getPDO()->prepare("UPDATE ".$this->table." SET ".implode(',', array_keys($updateArray))." WHERE id=:id");
 
             $result = $statement->execute($parameters);
 
@@ -76,7 +60,7 @@ class User
             }
             else
             {
-                if($this->getNode($id))
+                if($this->getUser($id))
                 {
                     throw new Exception(API_ERROR_NO_CHANGES_TO_BE_MADE);
                 }
@@ -90,16 +74,43 @@ class User
         }
     }
 
-    public function getUsers()
+    public function insertUser($data)
     {
-        $users = [];
-        return $users;
+        $parameters = array();
+        $updateArray = $data;
+
+        $parameters = DB::getInstance()->prepareArrayData($data);
+
+        if($updateArray)
+        {
+            $statement = DB::getInstance()->getPDO()->prepare("INSERT INTO ".$this->table." ( ".implode(',', array_keys($updateArray))." ) VALUES ( :".implode(',:', array_keys($updateArray))." )");
+
+            $result = $statement->execute($parameters);
+
+            if($statement->rowCount())
+            {
+                return 'success';
+            }
+            else
+            {
+                if($this->getUser($id))
+                {
+                    throw new Exception(API_ERROR_NO_CHANGES_TO_BE_MADE);
+                }
+                else
+                    throw new Exception(API_ERROR_NOT_EXISTING_NODE_ID.$id);
+            }
+        }
+        else
+        {
+            throw new Exception(API_ERROR_PASS_VALID_FIELDS_TO_UPDATE);
+        }
     }
 
     public function deleteUser($id)
     {
         $id = (int)$id;
-        $statement = DB::getInstance()->prepare("DELETE FROM '.$this->table.' WHERE id=:id");
+        $statement = DB::getInstance()->getPDO()->prepare("DELETE FROM ".$this->table." WHERE id=:id");
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
@@ -110,7 +121,7 @@ class User
         }
         else
         {
-            if(!$this->getNode($id))
+            if(!$this->getUser($id))
             {
                 throw new Exception(API_ERROR_NOT_EXISTING_NODE_ID.$id);
             }
@@ -118,7 +129,11 @@ class User
         return false;
     }
 
-
+    public function login()
+    {
+        $Auth = new Auth();
+        return ['token' => $Auth->tryToLogin()];
+    }
 
 
 }
