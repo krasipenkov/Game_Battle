@@ -7,10 +7,12 @@ class Response
 
     private $output = array();
 
-    public function __construct($data, $error = false)
+    public function __construct(){}
+
+    public function setResponse($data, $error = false)
     {
         if($error) {
-            $this->output = ['error' => 1, 'msg' => ''];
+            $this->output = ['error' => true, 'msg' => $data];
             return;
         }
         $this->output = ['data' => $data];
@@ -19,6 +21,12 @@ class Response
     public function getResponse()
     {
         return $this->_toJSON($this->output);
+    }
+
+    public function returnResponse()
+    {
+        echo $this->_toJSON($this->output);
+        exit();
     }
 
     private function _toJSON($data)

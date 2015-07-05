@@ -4,13 +4,21 @@ namespace app\entities;
 use app\lib\db\DB;
 use PDO;
 use Exception;
-use app\lib\acl\Auth;
+
+
+
 
 class User
 {
     private $fields = 'id, email, password, username, date_entered';
     private $table = 'users';
 
+    private $requestData = null;
+
+    public function __construct($data)
+    {
+        $this->requestData = $data;
+    }
 
     public function getUser($id = 0)
     {
@@ -37,20 +45,22 @@ class User
         return $result;
     }
 
-    public function updateUser($id, $data)
+    public function updateUser($id)
     {
         $id = (int)$id;
 
-
+        $data = $this->requestData;
         $parameters = array();
         $updateArray = $data;
+
 
         $parameters = DB::getInstance()->prepareArrayData($data);
 
         if($updateArray)
         {
             $parameters[':id'] = $id;
-            $statement = DB::getInstance()->getPDO()->prepare("UPDATE ".$this->table." SET ".implode(',', array_keys($updateArray))." WHERE id=:id");
+
+            $statement = DB::getInstance()->getPDO()->prepare("UPDATE ".$this->table." SET ".DB::getInstance()->buildUpdateFields(($updateArray))." WHERE id=:id");
 
             $result = $statement->execute($parameters);
 
@@ -74,9 +84,10 @@ class User
         }
     }
 
-    public function insertUser($data)
+    public function insertUser()
     {
         $parameters = array();
+        $data = $this->requestData;
         $updateArray = $data;
 
         $parameters = DB::getInstance()->prepareArrayData($data);
@@ -129,11 +140,7 @@ class User
         return false;
     }
 
-    public function login()
-    {
-        $Auth = new Auth();
-        return ['token' => $Auth->tryToLogin()];
-    }
+
 
 
 }

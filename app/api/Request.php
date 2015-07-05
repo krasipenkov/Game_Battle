@@ -7,11 +7,36 @@ class Request {
 	private $validHttpMethods = array('get', 'post', 'put', 'delete');
 	
 	private $method;
+
+    public $data = null;
 	
 	public function __construct() 
 	{
 		$this->setHttpRequestMethod();
+        $this->setRequestData();
 	}
+
+    protected function setRequestData()
+    {
+        switch ($this->method)
+        {
+            case 'PUT':
+                $putfp = fopen('php://input', 'r');
+                $putdata = '';
+                while($data = fread($putfp, 1024))
+                    $putdata .= $data;
+                fclose($putfp);
+                parse_str(ltrim($putdata, '&'), $this->data);
+                break;
+            case 'POST':
+                $this->data = $_POST;
+                break;
+            default:
+                $this->data = $_REQUEST;
+                break;
+        }
+
+    }
 		
 	protected function setHttpRequestMethod()
     {
