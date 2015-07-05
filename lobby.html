@@ -17,52 +17,81 @@
 
 </head>
 <body>
-    <div id="leftSide">
-        <div class="lobbyHolder">
-            <div class="headingGradient" style="padding-right: 0;">GAMES<div id="btnCreateGame" class="btnInGame">Create Game</div></div>
-            
-            <!--  list users  -->
-            
-            <div class="gamesHolder">
-                <!-- 
-                <div class="row">
-                    <img src="https://graph.facebook.com/1791186603/picture?width=50&height=50&access_token=CAACEdEose0cBABOcPP1Q1BlSq6Lq3WHc6GWrhqQglHinKhauIJZBH1fiaZBPJWN1TkHnEFf2FKhVPyuoYheR1ZCJgZAKffZB88Qcj5mkgIPj61hB5vTP3pZApOj7gqJ1ZBi7u26HOogGE1HEnLOpQGEtQPZAvbQbNtiDyqGL1QLNyIXWMjlF4QVd0oqFY6bKRUN2e1Jdy1wiPinRVWO9oLYK" alt="" title="Djamal Darakcha" />
-                    <div class="name">Djamal Darakcha</div>  
-                    <div class="btnInGame">Join</div>
-                </div> 
-                -->
-            </div>
-            <!--  end  --> 
-            
+    <div class="wrapper">
+        <div id="head">
+            <img class="huligan" src="resources/images/profile-huligan.png" title="" alt="" />    
+            <div class="userName">Здравей, Драган</div>
+            <img class="logo" src="resources/images/logo.png" title="" alt="" />
+            <div class="right-col"><span>Изход</span></div> 
+            <div id="btnCreateGame" class="btnInGame">Create Game</div>
         </div>
-        <div class="chatHolder">
-            <div class="headingGradient">CHAT</div>
-            
-            <div class="chatConversationHolder">
-   
-            	<!-- 
-
-                <div class="chatRow">
-                    <img src="https://graph.facebook.com/1791186603/picture?width=30&height=30&access_token=CAACEdEose0cBABOcPP1Q1BlSq6Lq3WHc6GWrhqQglHinKhauIJZBH1fiaZBPJWN1TkHnEFf2FKhVPyuoYheR1ZCJgZAKffZB88Qcj5mkgIPj61hB5vTP3pZApOj7gqJ1ZBi7u26HOogGE1HEnLOpQGEtQPZAvbQbNtiDyqGL1QLNyIXWMjlF4QVd0oqFY6bKRUN2e1Jdy1wiPinRVWO9oLYK" alt="" title="Djamal Darakcha" />
-                    <div class="text">Contrary to popular belief, Lorem Ipsum is not simply random text.</div>  
+        <div id="leftSide">
+            <div class="lobbyHolder">
+                <div class="headingGradient" style="padding-right: 0;">GAMES</div>
+                
+                <!--  list users  -->
+                
+                <div class="gamesHolder">
+                    
+                    
+                    <div class="row">
+                        <img src="https://graph.facebook.com/1791186603/picture?width=48&height=48&access_token=838216586255512|d5b3185abb5b8d442f74ec062eaf189f" alt="" title="Djamal Darakcha" />
+                        <div class="name">Djamal Darakcha</div>  
+                        <div class="btnInGame">Join</div>
+                    </div>
+                    <div class="row even">
+                        <img src="https://graph.facebook.com/1791186603/picture?width=48&height=48&access_token=838216586255512|d5b3185abb5b8d442f74ec062eaf189f" alt="" title="Djamal Darakcha" />
+                        <div class="name">Djamal Darakcha</div>  
+                        <div class="btnInGame">Join</div>
+                    </div> 
+                    <div class="row">
+                        <img src="https://graph.facebook.com/1791186603/picture?width=48&height=48&access_token=838216586255512|d5b3185abb5b8d442f74ec062eaf189f" alt="" title="Djamal Darakcha" />
+                        <div class="name">Djamal Darakcha</div>  
+                        <div class="btnInGame">Join</div>
+                    </div>
+                    
+                    
                 </div>
-                 -->
-                 
+                <!--  end  --> 
+                
             </div>
-            <div class="chatTypeInput">
-                <input type="text" name="message" id="lobby_msg" value="" placeholder="Type message here" />
-                <div class="sendBtn" onClick="LobbySendMessage();">Send</div>
-            </div>
-        </div>            
-    </div>
-    
-    <div id="rightSide">
-        <div class="roomsHolder">           
-            <div class="headingGradient" id="userCount"></div>
-            
-            <div id="userList"></div>
-            
-        </div>                                           
-    </div> 
-</body>                       
+            <div class="chatHolder">
+                <div class="headingGradient">CHAT</div>
+                
+                <div class="chatConversationHolder">
+       
+            	     
+
+                    <div class="chatRow">
+                        <img src="https://graph.facebook.com/1791186603/picture?width=48&height=48&access_token=838216586255512|d5b3185abb5b8d442f74ec062eaf189f" alt="" title="Djamal Darakcha" />
+                        <div class="text">Contrary to popular belief, Lorem Ipsum is not simply random text.</div>  
+                    </div>
+                    <div class="chatRow main">
+                        <img src="https://graph.facebook.com/1791186603/picture?width=48&height=48&access_token=838216586255512|d5b3185abb5b8d442f74ec062eaf189f" alt="" title="Djamal Darakcha" />
+                        <div class="text">Contrary to popular belief, Lorem Ipsum is not simply random text.</div>  
+                    </div>
+                    
+                     
+                </div>
+                <div class="chatTypeInput">
+                    <input type="text" name="message" id="lobby_msg" value="" placeholder="Type message here" />
+                    <div class="sendBtn" onClick="LobbySendMessage();">Send</div>
+                </div>
+            </div>            
+        </div>
+        
+        <div id="rightSide">
+            <div class="roomsHolder">           
+                <div class="headingGradient" id="userCount">PLAYERS: 2 online</div>
+                
+                <div id="userList">
+                    <div class="row"><img src="https://graph.facebook.com/1791186603/picture?width=48&height=48&access_token=838216586255512|d5b3185abb5b8d442f74ec062eaf189f" /><div class="name">Djamal Darakcha</div></div>
+                    <div class="row"><img src="https://graph.facebook.com/1791186603/picture?width=48&height=48&access_token=838216586255512|d5b3185abb5b8d442f74ec062eaf189f" /><div class="name">Djamal Darakcha</div></div>
+                    <div class="row"><img src="https://graph.facebook.com/1791186603/picture?width=48&height=48&access_token=838216586255512|d5b3185abb5b8d442f74ec062eaf189f" /><div class="name">Djamal Darakcha</div></div>
+                </div>
+                
+            </div>                                           
+        </div> 
+    </div>    
+</body>                      
 </html>
